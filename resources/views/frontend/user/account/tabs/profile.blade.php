@@ -1,3 +1,5 @@
+<!-- resources/views/frontend/user/account/profile.blade.php -->
+
 <div class="table-responsive">
     <table class="table table-striped table-hover table-bordered mb-0">
         <tr>
@@ -17,8 +19,11 @@
                         @endif
                     </div>
                     <div style="margin-left: 10px;">
-                        <button type="button" class="btn btn-primary" onclick="document.getElementById('upload-profile-picture').click();">@lang('Change Picture')</button>
-                        <input type="file" id="upload-profile-picture" style="display: none;" />
+                        <form id="upload-profile-picture-form" action="{{ route('frontend.user.update-profile-picture') }}" method="POST" enctype="multipart/form-data">
+                            @csrf
+                            <input type="file" name="profile_picture" id="upload-profile-picture" style="display: none;" onchange="document.getElementById('upload-profile-picture-form').submit();" />
+                            <button type="button" class="btn btn-primary" onclick="document.getElementById('upload-profile-picture').click();">@lang('Change Picture')</button>
+                        </form>
                     </div>
                 </div>
             </td>
