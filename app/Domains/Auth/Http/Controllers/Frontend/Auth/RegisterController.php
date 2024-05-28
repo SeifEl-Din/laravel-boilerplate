@@ -78,6 +78,7 @@ class RegisterController
             'password' => array_merge(['max:100'], PasswordRules::register($data['email'] ?? null)),
             'terms' => ['required', 'in:1'],
             'g-recaptcha-response' => ['required_if:captcha_status,true', new Captcha],
+            'profile_picture' => ['nullable', 'image', 'max:2048'], 
         ], [
             'terms.required' => __('You must accept the Terms & Conditions.'),
             'g-recaptcha-response.required_if' => __('validation.required', ['attribute' => 'captcha']),
@@ -96,6 +97,15 @@ class RegisterController
     {
         abort_unless(config('boilerplate.access.user.registration'), 404);
 
-        return $this->userService->registerUser($data);
+    // Check if a profile picture has been uploaded
+    if (request()->hasFile('profile_picture')) {
+        // Store the uploaded profile picture in the 'public' disk storage
+        $profilePicturePath = request()->file('profile_picture')->store('profile_pictures', 'public');
+        // Add the profile picture path to the user data
+        $data['profile_picture'] = $profilePicturePath;
+    }
+
+    // Register the user with other data
+    return $this->userService->registerUser($data);
     }
 }

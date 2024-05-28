@@ -7,7 +7,21 @@
 
         <tr>
             <th>@lang('Avatar')</th>
-            <td><img src="{{ $logged_in_user->avatar }}" class="user-profile-image" /></td>
+            <td>
+                <div style="display: flex; align-items: center;">
+                    <div>
+                        @if($logged_in_user->profile_picture)
+                            <img src="{{ asset('storage/' . $logged_in_user->profile_picture) }}" class="user-profile-image" style="max-width: 150px; max-height: 150px;" />
+                        @else
+                            <img src="{{ asset('default-profile-picture.png') }}" class="user-profile-image" style="max-width: 150px; max-height: 150px;" />
+                        @endif
+                    </div>
+                    <div style="margin-left: 10px;">
+                        <button type="button" class="btn btn-primary" onclick="document.getElementById('upload-profile-picture').click();">@lang('Change Picture')</button>
+                        <input type="file" id="upload-profile-picture" style="display: none;" />
+                    </div>
+                </div>
+            </td>
         </tr>
 
         <tr>

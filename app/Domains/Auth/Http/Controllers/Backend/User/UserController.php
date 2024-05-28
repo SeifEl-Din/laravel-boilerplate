@@ -116,6 +116,7 @@ class UserController
 
         return redirect()->route('admin.auth.user.show', $user)->withFlashSuccess(__('The user was successfully updated.'));
     }
+    
 
     /**
      * @param  DeleteUserRequest  $request
