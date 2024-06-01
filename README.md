@@ -48,7 +48,7 @@ This project is a Laravel Boilerplate application that includes user profile pic
     - php artisan serve
 
 
-##Usage
+## Usage
 
 **User profile picture change:**
 - Visit '/register' to register a new user. You can now upload a new profile picture.
