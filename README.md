@@ -19,7 +19,7 @@ This project is a Laravel Boilerplate application that includes user profile pic
 1. **Clone the repository:**
     - git clone https://github.com/SeifEl-Din/laravel-boilerplate
 
-2. **Open the directory in a CMD:**
+2. **Open the directory in a CMD**
 
 3. **Start XAMPP:**
     - Open XAMPP to launch apache and MySQL
